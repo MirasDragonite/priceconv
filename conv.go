@@ -99,7 +99,7 @@ func (p *Valutes) GetDailyRate() {
 	}
 }
 
-func (p Valutes) ConverStringPrices(price string) (float64, error) {
+func (p Valutes) ConverStringPrices(price, currency string) (float64, error) {
 	prices := strings.Split(price, " ")
 	if len(prices) != 2 {
 		return 0, errors.New("wrong price")
@@ -109,7 +109,7 @@ func (p Valutes) ConverStringPrices(price string) (float64, error) {
 	if amount <= 0 || err != nil {
 		return 0, errors.New("wrong price")
 	}
-	result, err := p.ConvertCurrency(amount, prices[1], "EUR")
+	result, err := p.ConvertCurrency(amount, prices[1], currency)
 	if err != nil {
 		return 0, err
 	}
